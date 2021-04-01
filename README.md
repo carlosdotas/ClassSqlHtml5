@@ -5,9 +5,12 @@
 
 	const db = new Sql({
 		dbName:'Vendas',
+		onExec:function(values){
+			console.log(values);
+		},
 		onRead:function(values){
 			console.log(values);
-		}
+		}		
 	});
 
 	db.delTable({
