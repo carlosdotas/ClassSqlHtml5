@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Class Sql HTML5</title>
+	<script type="text/javascript" src="classSql.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+const db = new Sql({
+	dbName:'Vendas',
+	onRead:function(values){
+		console.log(values);
+	}
+});
+/*
+db.delTable({
+	table:'produtos',
+	onDelTable:function(value){
+		console.log(value);
+	}
+});
+/*
+db.insert({
+	table:'produtos',
+	values:{cod:'21',name:'Gelatina',preco:25.90},
+	onInsert:function(value){
+		console.log(value);
+	}
+});	
+/*
+db.update({
+	table:'produtos',
+	id:5,
+	values:{cod:'25',name:'Gelatina2',preco:25.90},
+	onUpdate:function(value){
+		console.log(value);
+	}	
+});
+*/
+db.set({
+	table:'produtos',
+	id:8,
+	values:{cod:'25',name:'Gelatina1',preco:25.90},
+	onRead:function(value){
+		console.log(value.rows);
+	}
+});
+
+
+</script>
+</body>
+</html>

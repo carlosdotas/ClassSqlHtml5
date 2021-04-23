@@ -53,7 +53,29 @@ class Sql{
 		/* Execuções
 		/*-----------------------------------------*/			
 	    this.exec(`UPDATE ${params.table} SET ${vals} WHERE rowid=${params.id}`,params.onUpdate);
-	}		
+	}	
+	set(params){
+
+		let update = (values) => this.update(params);
+		let insert = (values) => this.insert(params);
+		
+
+		db.read({
+			table:params.table,
+			id:params.id,
+			onRead:function(value){
+				if(value.rows.length==1){
+					console.log('Update');
+					update(params);
+				}else{					
+					delete params.id;
+					console.log('Insert:',params);
+					insert(params);
+				}
+				//console.log(value.rows.length);
+			}
+		});		
+	}	
 	read(params){	
 
 		/* Regras
